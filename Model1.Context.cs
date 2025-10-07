@@ -12,19 +12,18 @@ namespace Alalykin
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class Alalikin_AutoserviceEntities : DbContext
+    
+    public partial class Alalikin_AutoserviceEntities1 : DbContext
     {
-        private static Alalikin_AutoserviceEntities _context;
-
-        public static Alalikin_AutoserviceEntities GetContext()
+        private static Alalikin_AutoserviceEntities1 _context;
+        public static Alalikin_AutoserviceEntities1 GetContext()
         {
             if (_context == null)
-                _context = new Alalikin_AutoserviceEntities();
+                _context = new Alalikin_AutoserviceEntities1();
             return _context;
         }
-        public Alalikin_AutoserviceEntities()
-            : base("name=Alalikin_AutoserviceEntities")
+        public Alalikin_AutoserviceEntities1()
+            : base("name=Alalikin_AutoserviceEntities1")
         {
         }
     
@@ -43,6 +42,7 @@ namespace Alalykin
         public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
     }
 }
