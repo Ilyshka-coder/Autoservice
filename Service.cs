@@ -33,6 +33,10 @@ namespace Alalykin
             {
                 return (int)(Discount * 100);
             }
+            set
+            {
+                Discount = value / 100.0;
+            }
         }
         public string Description { get; set; }
     
