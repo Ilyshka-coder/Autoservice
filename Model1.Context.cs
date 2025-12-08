@@ -13,17 +13,17 @@ namespace Alalykin
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Alalikin_AutoserviceEntities1 : DbContext
+    public partial class Alalikin_AutoserviceEntities2 : DbContext
     {
-        private static Alalikin_AutoserviceEntities1 _context;
-        public static Alalikin_AutoserviceEntities1 GetContext()
+        private static Alalikin_AutoserviceEntities2 _context;
+        public static Alalikin_AutoserviceEntities2 GetContext()
         {
             if (_context == null)
-                _context = new Alalikin_AutoserviceEntities1();
+                _context = new Alalikin_AutoserviceEntities2();
             return _context;
         }
-        public Alalikin_AutoserviceEntities1()
-            : base("name=Alalikin_AutoserviceEntities1")
+        public Alalikin_AutoserviceEntities2()
+            : base("name=Alalikin_AutoserviceEntities2")
         {
         }
     

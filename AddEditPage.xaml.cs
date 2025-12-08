@@ -36,25 +36,34 @@ namespace Alalykin
             if (_currentService.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
             if (_currentService.DiscountIt < 0 || _currentService.DiscountIt > 100)
-                errors.AppendLine("Укажите скидку");
-            if (string.IsNullOrWhiteSpace(_currentService.DurationInSeconds))
-                errors.AppendLine("Укажите длительность услуги");
+                errors.AppendLine("Укажите скидку от 0 до 100");
+            if (_currentService.DurationInSeconds <= 0 || _currentService.DurationInSeconds > 240)
+                errors.AppendLine("Укажите длительность услуги не больше 240 минут и больше 0");
             if(errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if (_currentService.ID == 0)
-                Alalikin_AutoserviceEntities1.GetContext().Service.Add(_currentService);
-            try
+            var allServices = Alalikin_AutoserviceEntities2.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentService.Title).ToList();
+            if (allServices.Count == 0)
             {
-                Alalikin_AutoserviceEntities1.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
+                if (_currentService.ID == 0)
+                    Alalikin_AutoserviceEntities2.GetContext().Service.Add(_currentService);
+                try
+                {
+                    Alalikin_AutoserviceEntities2.GetContext().SaveChanges();
+                    MessageBox.Show("информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
         }
 
