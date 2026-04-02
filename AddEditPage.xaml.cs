@@ -21,12 +21,15 @@ namespace Alalykin
     public partial class AddEditPage : Page
     {
         private Service _currentService = new Service();
+        private bool IsEdit;
         public AddEditPage(Service SelectedService)
         {
             InitializeComponent();
             if (SelectedService != null)
                 _currentService = SelectedService;
             DataContext = _currentService;
+            if (SelectedService != null) IsEdit = true;
+            else IsEdit = false;
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -46,7 +49,7 @@ namespace Alalykin
             }
             var allServices = Alalikin_AutoserviceEntities2.GetContext().Service.ToList();
             allServices = allServices.Where(p => p.Title == _currentService.Title).ToList();
-            if (allServices.Count == 0)
+            if (allServices.Count == 0 || IsEdit == true)
             {
                 if (_currentService.ID == 0)
                     Alalikin_AutoserviceEntities2.GetContext().Service.Add(_currentService);
