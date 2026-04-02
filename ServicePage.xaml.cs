@@ -230,6 +230,7 @@ namespace Alalykin
             {
                 Alalikin_AutoserviceEntities2.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 ServiceListView.ItemsSource = Alalikin_AutoserviceEntities2.GetContext().Service.ToList();
+                UpdateServices();
             }
         }
 
