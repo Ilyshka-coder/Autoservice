@@ -39,7 +39,7 @@ namespace Alalykin
             if (StartDate.Text == "")
                 errors.AppendLine("Укажите дату услуги");
             string[] Start = TBStart.Text.Split(new char[] { ':' });
-            if (TBStart.Text == "" || !TBStart.Text.Contains(':') || TBStart.Text[0]==':' || TBStart.Text[TBStart.Text.Length-1]==':' || Convert.ToInt32(Start[0]) >= 24 || Convert.ToInt32(Start[0]) <= 0 || Convert.ToInt32(Start[1]) <= 0 || Convert.ToInt32(Start[1]) >= 60 || TBStart.Text.Length != 5)
+            if (TBStart.Text == "" || !TBStart.Text.Contains(':') || TBStart.Text[0]==':' || TBStart.Text[TBStart.Text.Length-1]==':' || Convert.ToInt32(Start[0]) >= 24 || Convert.ToInt32(Start[0]) < 0 || Convert.ToInt32(Start[1]) < 0 || Convert.ToInt32(Start[1]) >= 60 || TBStart.Text.Length != 5)
                 errors.AppendLine("Укажите время начала услуги, например 00:00");
             if (errors.Length > 0)
             {
